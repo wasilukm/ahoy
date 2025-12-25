@@ -245,19 +245,16 @@
                                 <div class="col-12 col-sm-9"><input type="number" name="mqttInterval" title="Invalid input" /></div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-8 col-sm-3">Send Home Assistant discovery config on MQTT connect</div>
-                                <div class="col-4 col-sm-9"><input type="checkbox" name="sendConfigOnConnect"/></div>
+                                <div class="col-8 col-sm-3">{#RETAIN}</div>
+                                <div class="col-4 col-sm-9"><input type="checkbox" name="retain"/></div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-12 col-sm-3 my-2">Force sending Home Assistant discovery config</div>
-                                <div class="col-12 col-sm-9">
+                                <div class="col-8 col-sm-3">{#SEND_CONFIG_ON_CONNECT}</div>
+                                <div class="col-4 col-sm-3"><input type="checkbox" name="sendConfigOnConnect"/></div>
+                                <div class="col-10 col-sm-3">
                                     <input type="button" name="mqttDiscovery" id="mqttDiscovery" class="btn" value="{#BTN_SEND}" onclick="sendDiscoveryConfig()"/>
                                     <span id="apiResultMqtt"></span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-8 col-sm-3">{#RETAIN}</div>
-                                <div class="col-4 col-sm-9"><input type="checkbox" name="retain"/></div>
                             </div>
                         </fieldset>
                     </div>
