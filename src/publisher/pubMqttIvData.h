@@ -171,8 +171,26 @@ class PubMqttIvData {
                                     mTotal[3] += mIv->getValue(mPos, rec);
                                     break;
                             }
-                        } else
+                        } else if (mIv->GeneralConfig->rstValsAtMidNight) {
+                            switch (rec->assign[mPos].fieldId) {
+                                case FLD_YT:
+                                    DPRINT_IVID(DBG_INFO, mPos);
+                                    DBGPRINT(F("Inverter OFF - YT: "));
+                                    DBGPRINTLN(String(mIv->getValue(mPos, rec)));
+                                    mTotal[1] += mIv->getValue(mPos, rec);
+                                    break;
+                                case FLD_YD: {
+                                    DPRINT_IVID(DBG_INFO, mPos);
+                                    DBGPRINT(F("Inverter OFF - YD: "));
+                                    DBGPRINTLN(String(mIv->getValue(mPos, rec)));
+                                    mTotal[2] += mIv->getValue(mPos, rec);
+                                    break;
+                                }
+                            }
+                        }
+                        else {
                             mAllTotalFound = false;
+                        }
                     }
                 }
 
