@@ -172,16 +172,19 @@ class PubMqttIvData {
                                     break;
                             }
                         } else if (mIv->GeneralConfig->rstValsAtMidNight) {
+                            // Inverter is OFF - use last stored YT/YD values for total calculation.
+                            // It is safe to use them when values are reset at midnight.
+                            // This helps in having correct total values during daytime even when some inverters are OFF
                             switch (rec->assign[mPos].fieldId) {
                                 case FLD_YT:
-                                    DPRINT_IVID(DBG_INFO, mPos);
-                                    DBGPRINT(F("Inverter OFF - YT: "));
+                                    DPRINT_IVID(DBG_DEBUG, mPos);
+                                    DBGPRINT(F("Inverter is OFF - Using last YT: "));
                                     DBGPRINTLN(String(mIv->getValue(mPos, rec)));
                                     mTotal[1] += mIv->getValue(mPos, rec);
                                     break;
                                 case FLD_YD: {
-                                    DPRINT_IVID(DBG_INFO, mPos);
-                                    DBGPRINT(F("Inverter OFF - YD: "));
+                                    DPRINT_IVID(DBG_DEBUG, mPos);
+                                    DBGPRINT(F("Inverter is OFF - Using last YD: "));
                                     DBGPRINTLN(String(mIv->getValue(mPos, rec)));
                                     mTotal[2] += mIv->getValue(mPos, rec);
                                     break;
